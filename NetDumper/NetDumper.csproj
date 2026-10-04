@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Path to a checkout of https://github.com/shalzuth/ff7ecapi (provides Utils, ff7ecnet, ff7ecmp, ff7ecpb).
+         Override with: dotnet build -p:Ff7ecApiRoot=/path/to/ff7ecapi -->
+    <Ff7ecApiRoot Condition="'$(Ff7ecApiRoot)' == ''">$(MSBuildThisFileDirectory)../../ff7ecapi</Ff7ecApiRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.6.100-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(Ff7ecApiRoot)/ff7ecmp/ff7ecmp.csproj" />
+    <ProjectReference Include="$(Ff7ecApiRoot)/ff7ecnet/ff7ecnet.csproj" />
+    <ProjectReference Include="$(Ff7ecApiRoot)/Utils/Utils.csproj" />
+  </ItemGroup>
+
+</Project>
